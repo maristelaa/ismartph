@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register User</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .required-field label::before {
+            content: '* ';
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#"></a>
+    
+  </div>
+</nav>
+
+<div class="container mt-5">
+    
+    <div style="text-align: center; margin-top: 100px;">
+        <img src="{% static 'google_icon.png' %}" alt="Google Logo" width="20px">
+        <a href="#" style="text-decoration: none;">
+            Sign In with Google
+        </a>
+    </div>
+    <p style="margin-top: 20px; text-align: center;">OR</p>
+    <h1>Register a New Account</h1>
+    
+    <form action="register/" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6 mb-3 required-field">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="fName" placeholder="Enter your first name" required>
+            </div>
+            <div class="col-md-6 mb-3 required-field">
+                <label for="middleName" class="form-label">Middle Name</label>
+                <input type="text" class="form-control" id="middleName" name="mName" placeholder="Enter your middle name" required>
+            </div>
+            <div class="col-md-6 mb-3 required-field">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lName" placeholder="Enter your last name" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="suffixName" class="form-label">Suffix Name</label>
+                <input type="text" class="form-control" id="suffixName" name="sName" placeholder="Enter your suffix name">
+            </div>
+            <div class="col-md-6 mb-3 required-field">
+                <label for="email_address" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email_address" name="email_address" placeholder="Enter a Email Address" required>
+            </div>
+            <div class="col-md-6 mb-3 required-field">
+                <label for="input2" class="form-label">Password</label>
+                <input type="password" class="form-control" id="input_password" name="password" placeholder="Set a Password" required>
+            </div>
+        </div>
+
+
+        {% if error_message %}
+        <div class="alert alert-danger mt-3">
+            {{ error_message }}
+        </div>
+        {% endif %}
+
+        <div class="form-check d-flex justify-content-between align-items-center mb-3">
+
+            <input type="submit" value="REGISTER" class="btn btn-success">
+
+            <p>Already have an account? <a href="{% url 'logIn' %}">LOGIN</a></p>
+
+        </div>
+
+        <script>
+            // Check if registration success flag is set
+            const registrationSuccess = "{{ request.session.registration_success }}";
+            
+            if (registrationSuccess === "True") {
+                // Show success alert
+                const successAlert = document.getElementById("success-alert");
+                successAlert.style.display = "block";
+                
+                // Redirect after a delay
+                setTimeout(function() {
+                    window.location.href = "{% url 'logIn' %}";
+                }, 2000); // 2 seconds delay
+            }
+        </script>
+
+        </form>
+        
+</div>
+
+<!-- Bootstrap JS (optional, for certain components to work) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
