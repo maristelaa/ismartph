@@ -21,10 +21,15 @@
 
 body {
     font-family: Arial, sans-serif;
+    background-image: url("{% static 'iSMARTPH.png' %}");
+    background-size: 100% 100%; /* This will cover the entire viewport */
+    /*background-size: cover; /* This will cover the entire viewport */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps the background fixed as you scroll */
 }
 
 a{
-    color: #000;
+    color: #2B2828;
     font-style: none;
     text-decoration: none;
 }
@@ -38,8 +43,9 @@ a{
 h1 {
     font-family: fantasy;
     color: #238B45;
-    font-size: 85px;
-    margin-left: 120px;
+    font-size: 90px;
+    margin-left: 125px;
+    margin-top: 50px;
 }
 
 h2{
@@ -86,7 +92,7 @@ form {
 
 .form-check-label {
     margin-left: 5px;
-    color: #000;
+    color: #2B2828;
 }
 
 .btn-success {
@@ -96,9 +102,16 @@ form {
     border-radius: 10px;
     color: #ffffffe3;
     cursor: pointer;
-    font-size:15px;
+    font-size:22px;
     font-weight: bold;
     justify-content: center;
+    width: 200px;
+}
+
+.button-container {
+    display: flex;
+    justify-content:space-around; /* Adjust this as needed */
+    align-items: center;
 }
 
 .btn-primary:hover {
@@ -134,12 +147,7 @@ form {
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-white bg-white">
-  <div class="container">
-    <a class="navbar-brand" href="#"></a>
-    
-  </div>
-</nav>
+
 
 <h1>WELCOME TO iSMARTPH</h1>
 
@@ -158,7 +166,7 @@ form {
         </div>
         <div class="mb-3">
             <label for="password" class="form-label"><i class='bx bxs-lock-alt' style="color: #238B45; font-size: 18px;"></i> Password</label>
-            <input type="password" class="form-control" placeholder="Enter Email Address" id="password" name="password" required>
+            <input type="password" class="form-control" placeholder="Enter Password" id="password" name="password" required>
         </div>
         <div class="form-check d-flex justify-content-between align-items-center mb-3">
             <div>
@@ -169,13 +177,15 @@ form {
                 <a href="{% url 'forgot_pass' %}">Forgot Password?</a>
             </div>
         </div>
-        
-        <button type="submit" class="btn btn-success">LOGIN</button>
-    </form>
-    
+
+            
     <div class="button-container">
-        <button type="button" class="btn btn-success" onclick="registerUser()">REGISTER NEW USER</button>
+        <button type="submit" class="btn btn-success">LOGIN</button>
+        <button type="button" class="btn btn-success" onclick="registerUser()">SIGN UP</button>
     </div>
+        
+    </form>
+
     
     <script>
         function registerUser() {

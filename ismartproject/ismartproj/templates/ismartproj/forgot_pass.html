@@ -8,30 +8,125 @@
     <title>iSMART | Forgot Password</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Link to Boxicons CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css">
+
+<style>
+
+
+/* Basic reset and global styles */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image: url("{% static 'iSMARTPH.png' %}");
+    background-size: 100% 100%; /* This will cover the entire viewport */
+    /*background-size: cover; /* This will cover the entire viewport */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps the background fixed as you scroll */
+}
+
+h1{
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+
+form {
+    margin-bottom: 20px;
+    margin-left:auto;
+}
+
+.form-label {
+    font-weight: lighter;
+    font-size: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    padding-left: 20px;
+    margin-bottom: 15px;
+    border: 1px solid hsl(0, 0%, 11%); /* Lighter border color */
+    border-radius: 10px;
+    background-color: transparent; /* No background color */
+    outline: none; /* Remove default outline */
+}
+
+.form-check {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-check-label {
+    margin-left: 5px;
+    color: #2B2828;
+}
+
+.btn-success {
+    padding: 10px 20px;
+    background-color: #238B45;
+    border: none;
+    border-radius: 10px;
+    color: #ffffffe3;
+    cursor: pointer;
+    font-size:22px;
+    font-weight: bold;
+    justify-content: center;
+    justify-content:center;
+    width: 200px;
+    margin-top: 10px;
+}
+
+.button-container .p{
+    align-items: left;
+}
+
+p{
+    margin-top: 20px;
+}
+
+.btn-primary:hover {
+    background-color: #145b2c;
+
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .container {
+    max-width: 90%;
+    }
+}
+</style>
 
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand" href="#"></a>
-    
-  </div>
-</nav>
-
 <div class="container mt-5">
-    <h1>Forgot Password</h1>
- 
     <form action="password_reset/" method="post">
+      <h1>Forgot Password</h1>
+      <p>Enter your email address to reset your account's password</p>
+  
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="username" class="form-label">Email Address</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+        <div class="col-md-4 mb-3">
+            <label for="username" class="form-label"><i class='bx bxs-user' style="color: #238B45; font-size: 18px;"></i> Email Address</label>
+            <input type="email" class="form-control" placeholder="Enter Email Address" id="email" name="email" required>
         </div>
+
+        <div class="button-container">
+
         
-            <button type="submit" class="btn btn-success">SEND</button>
-        
+            <button type="submit" class="btn btn-success">SEND LINK</button>
+
+            <p>Go back to <a href="{% url 'logIn' %}">login</a>
+
+        </div>
         </form>
         
 </div>

@@ -81,7 +81,7 @@ def password_reset(request):
             
             try:
                 auth.send_password_reset_email(email)  # Placeholder for Firebase function
-                messages.success(request, 'Password reset email has been sent.')
+                messages.success(request, 'We have already sent a link to your account to reset your password, you can now check your email.')
             except pyrebase.pyrebase.HTTPError as e:
                 error_message = e.args[1]['error']['message']
                 messages.error(request, f'Error sending password reset email: {error_message}')

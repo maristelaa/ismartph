@@ -4,61 +4,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register User</title>
+    <title>iSMARTPH | Register User</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-        .required-field label::before {
-            content: '* ';
-            color: red;
-        }
-    </style>
+
+<style>
+
+
+/* Basic reset and global styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image: url("{% static 'iSMARTPH.png' %}");
+    background-size: 100% 100%; /* This will cover the entire viewport */
+    /*background-size: cover; /* This will cover the entire viewport */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps the background fixed as you scroll */
+}
+
+.required-field label::before {
+    content: '* ';
+    color: red;
+}
+
+h1{
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+
+form {
+    margin-bottom: 20px;
+    margin-left:auto;
+}
+
+.form-label {
+    font-weight: lighter;
+    font-size: 20px;
+}
+
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    padding-left: 20px;
+    margin-bottom: 15px;
+    border: 1px solid hsl(0, 0%, 11%); /* Lighter border color */
+    border-radius: 10px;
+    background-color: transparent; /* No background color */
+    outline: none; /* Remove default outline */
+}
+
+.form-check {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-check-label {
+    margin-left: 5px;
+    color: #2B2828;
+}
+
+.btn-success {
+    padding: 10px 20px;
+    background-color: #238B45;
+    border: none;
+    border-radius: 10px;
+    color: #ffffffe3;
+    cursor: pointer;
+    font-size:22px;
+    font-weight: bold;
+    justify-content: center;
+    justify-content:center;
+    width: 200px;
+}
+
+.button-container .p{
+    align-items: left;
+}
+
+p{
+    margin-top: 20px;
+}
+
+.btn-primary:hover {
+    background-color: #145b2c;
+
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .container {
+    max-width: 90%;
+    }
+}
+</style>
+
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand" href="#"></a>
-    
-  </div>
-</nav>
-
 <div class="container mt-5">
-    
-    <div style="text-align: center; margin-top: 100px;">
-        <img src="{% static 'google_icon.png' %}" alt="Google Logo" width="20px">
-        <a href="#" style="text-decoration: none;">
-            Sign In with Google
-        </a>
-    </div>
-    <p style="margin-top: 20px; text-align: center;">OR</p>
-    <h1>Register a New Account</h1>
-    
+
     <form action="register/" method="post">
         {% csrf_token %}
         <div class="row">
-            <div class="col-md-6 mb-3 required-field">
+            <h1>Register a New Account</h1>
+
+            <p>Kindly fill the form with the correct information.</p>
+            <div class="col-md-4 mb-3 required-field">
                 <label for="firstName" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="firstName" name="fName" placeholder="Enter your first name" required>
             </div>
-            <div class="col-md-6 mb-3 required-field">
+            <div class="col-md-4 mb-3 required-field">
                 <label for="middleName" class="form-label">Middle Name</label>
                 <input type="text" class="form-control" id="middleName" name="mName" placeholder="Enter your middle name" required>
             </div>
-            <div class="col-md-6 mb-3 required-field">
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-3 required-field">
                 <label for="lastName" class="form-label">Last Name</label>
                 <input type="text" class="form-control" id="lastName" name="lName" placeholder="Enter your last name" required>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <label for="suffixName" class="form-label">Suffix Name</label>
                 <input type="text" class="form-control" id="suffixName" name="sName" placeholder="Enter your suffix name">
             </div>
-            <div class="col-md-6 mb-3 required-field">
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-3 required-field">
                 <label for="email_address" class="form-label">Email Address</label>
                 <input type="email" class="form-control" id="email_address" name="email_address" placeholder="Enter a Email Address" required>
             </div>
-            <div class="col-md-6 mb-3 required-field">
+            <div class="col-md-4 mb-3 required-field">
                 <label for="input2" class="form-label">Password</label>
                 <input type="password" class="form-control" id="input_password" name="password" placeholder="Set a Password" required>
             </div>
@@ -71,7 +155,7 @@
         </div>
         {% endif %}
 
-        <div class="form-check d-flex justify-content-between align-items-center mb-3">
+        <div class="button-container">
 
             <input type="submit" value="REGISTER" class="btn btn-success">
 
