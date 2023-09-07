@@ -73,7 +73,7 @@ form {
 
 .btn-success {
     padding: 10px 20px;
-    background-color: #238B45;
+    background-color: #035514;
     border: none;
     border-radius: 10px;
     color: #ffffffe3;
@@ -93,6 +93,22 @@ p{
     margin-top: 20px;
 }
 
+header {
+    display: flex;
+    width: 79px;
+    height: 10px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #125A2A;
+    font-family: inherit;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adjust the values as needed */
+}
+
 .btn-primary:hover {
     background-color: #145b2c;
 
@@ -110,39 +126,45 @@ p{
 
 <body>
 
+
 <div class="container mt-5">
 
     <form action="register/" method="post">
         {% csrf_token %}
+
+        <header>
+            <img></img><span>iSMARTPH</span>
+        </header>
+        <br><br>
         <div class="row">
             <h1>Register a New Account</h1>
 
             <p>Kindly fill the form with the correct information.</p>
-            <div class="col-md-4 mb-3 required-field">
+            <div class="col-md-3 mb-3 required-field">
                 <label for="firstName" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="firstName" name="fName" placeholder="Enter your first name" required>
             </div>
-            <div class="col-md-4 mb-3 required-field">
+            <div class="col-md-3 mb-3 required-field">
                 <label for="middleName" class="form-label">Middle Name</label>
                 <input type="text" class="form-control" id="middleName" name="mName" placeholder="Enter your middle name" required>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 mb-3 required-field">
+            <div class="col-md-3 mb-3 required-field">
                 <label for="lastName" class="form-label">Last Name</label>
                 <input type="text" class="form-control" id="lastName" name="lName" placeholder="Enter your last name" required>
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-3 mb-3">
                 <label for="suffixName" class="form-label">Suffix Name</label>
                 <input type="text" class="form-control" id="suffixName" name="sName" placeholder="Enter your suffix name">
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 mb-3 required-field">
+            <div class="col-md-3 mb-3 required-field">
                 <label for="email_address" class="form-label">Email Address</label>
                 <input type="email" class="form-control" id="email_address" name="email_address" placeholder="Enter a Email Address" required>
             </div>
-            <div class="col-md-4 mb-3 required-field">
+            <div class="col-md-3 mb-3 required-field">
                 <label for="input2" class="form-label">Password</label>
                 <input type="password" class="form-control" id="input_password" name="password" placeholder="Set a Password" required>
             </div>
