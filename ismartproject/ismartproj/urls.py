@@ -9,4 +9,7 @@ urlpatterns = [
     path('register_user/register/', views.register, name='register'),
     path('forgot_pass/', views.forgot_pass, name="forgot_pass"),
     path('forgot_pass/password_reset/', views.password_reset, name='password_reset'),
+    path('mycrops/',views.mycrops, name='mycrops'),
+    path('crops/',views.crops, name='crops'),
+    path('dashboard', views.home, name='home'),
 ]

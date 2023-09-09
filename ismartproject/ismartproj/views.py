@@ -92,3 +92,22 @@ def password_reset(request):
         form = PasswordResetForm()
     
     return render(request, 'ismartproj/password_reset.html', {'form': form})
+
+def mycrops(request):
+    email = request.POST.get('email')
+    password = request.POST.get('password')
+    try: 
+        user = auth.sign_in_with_email_and_password(email, password)
+    except:
+        message = "Invalid Emaill or Password"
+        return render(request,"ismartproj/logIn.html", {"messg":message})
+    print(user['idToken'])
+    session_id = user['idToken']
+    request.session['uid'] = str(session_id)
+    return render(request, 'ismartproj/mycrops.html', {'e': email})
+
+def crops(request):
+    return render(request, 'ismartproj/mycrops.html')
+
+def home(request):
+    return render(request, 'ismartproj/home.html')
