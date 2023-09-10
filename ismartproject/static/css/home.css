@@ -16,11 +16,11 @@ body{
     min-height: 100vh;
     background-color: var(--bg-color);
     color: var(--text-color);
+    overflow-y: scroll;
 }
 
 .head-title {
     display: fixed;
-    padding: 0px 50px 0px 30px;
 }
 .head-title h1{
     font-size: 2.5rem;
@@ -149,7 +149,6 @@ header{
 .main{
     display: flex;
     align-items: center;
-    overflow-y: scroll;
 }
 .main a{
     margin-right: 25px;
@@ -162,20 +161,58 @@ header{
 
 .container{
     position: relative;
+    justify-content: center;
+}
+
+
+.row h3{
+    font-size: 1.5rem;
+    color: #000;
+    font-family: 'Fredoka', sans-serif;
+}
+
+.card{
+    justify-content:center;
+    width: 100%; /* Adjust the width as needed */
+    max-width: 300px; /* Maximum width if required */
+    height: 280px; /* Adjust the height as needed */
+    border: 2px solid #43D071;
+    background: linear-gradient(180deg, #f7fff9 0%, rgba(67, 208, 113, 0.00) 100%);
+    transition: all .50 ease;
+    margin: 0px 0px 0px 0px;
+    justify-items: center
+}
+
+.card h1{
+    font-size: 2.0rem;
+    color: var(--main-color);
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    justify-content: flex-start;
+    padding: 15px 0px 0px 25px;
+}
+
+.card p{
+    font-size: 1.0rem;
+    color: #05481B;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 100;
+    padding: 15px 0px 0px 25px;
 }
 
 /* CSS for the container */
-.col-md-12 {
+.col-sm-12 {
     width: 100%; /* Adjust the width as needed */
-    max-width: 348px; /* Maximum width if required */
+    max-width: 300px; /* Maximum width if required */
     height: fit-content; /* Adjust the height as needed */
-    border-radius: 10px;
-    border: 0px solid #43D071;
+    border-radius: 25px;
+    border: 1px solid #43D071;
     background: linear-gradient(180deg, #43D071 0%, rgba(67, 208, 113, 0.00) 100%);
     transition: all .50 ease;
+    position: relative;
 }
 
-.col-md-12 h1{
+.col-sm-12 h1{
     font-size: 4.0rem;
     color: var(--text-color);
     font-family: 'Fredoka', sans-serif;
@@ -183,12 +220,16 @@ header{
     padding: 40px;
     transition: all .50 ease;
 }
-.col-md-12 .p{
-    font-size: 0.5rem;
-    padding: 0px 0px 5px 40px;
-    font-weight:100;
+.col-sm-12 h1 p{
+    margin: 10px 0px 0px 5px;
+    font-size: 1.4rem;
+    width: 50%;
     transition: all .50 ease;
+    color: #000000;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 500;
 }
+
 
 
 /* Media query for screens with a maximum width of 768px (typical for tablets) */

@@ -55,11 +55,11 @@ h2{
 
 .alert {
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 10px 10px 10px 20px;
     border-radius: 5px;
-    border: 1px solid #dc3545;
-    color: #dc3545;
-    background-color: #f8d7da;
+    border: 1px solid #ff0019;
+    color: #000000;
+    background-color: #f8e9eb;
 }
 
 form {
@@ -158,7 +158,7 @@ form {
         {{ messg }}
     </div>
     {% endif %}
-    <form action="dashboard/" method="post">
+    <form action="dashboard" method="post">
         {% csrf_token %}
         <div class="mb-3">
             <label for="username" class="form-label"><i class='bx bxs-user' style="color: #035514; font-size: 18px;"></i> Email Address</label>

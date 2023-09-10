@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import JsonResponse    
 from django.contrib import messages
@@ -22,6 +23,7 @@ firebase  = pyrebase.initialize_app(config)
 auth = firebase.auth()
 database = firebase.database()
 
+
 def logIn(request):
     return render(request, "ismartproj/logIn.html")
 
@@ -30,13 +32,23 @@ def dashboard(request):
     password = request.POST.get('password')
     try: 
         user = auth.sign_in_with_email_and_password(email, password)
+
+        # Get the user's UID
+        uid = user['localId']
+        
+        # Retrieve the user's fName from Firebase
+        user_data = database.child("users").child(uid).child("useraccount").get().val()
+        fName = user_data.get("fName", "")
+
+        session_id = user['idToken']
+        request.session['uid'] = str(session_id)
+        
+        return render(request, 'ismartproj/home.html', {'fName': fName})
+    
     except:
         message = "Invalid Emaill or Password"
         return render(request,"ismartproj/logIn.html", {"messg":message})
-    print(user['idToken'])
-    session_id = user['idToken']
-    request.session['uid'] = str(session_id)
-    return render(request, 'ismartproj/home.html', {'e': email})
+   
 
 def logout_view(request):
     
@@ -93,21 +105,11 @@ def password_reset(request):
     
     return render(request, 'ismartproj/password_reset.html', {'form': form})
 
-def mycrops(request):
-    email = request.POST.get('email')
-    password = request.POST.get('password')
-    try: 
-        user = auth.sign_in_with_email_and_password(email, password)
-    except:
-        message = "Invalid Emaill or Password"
-        return render(request,"ismartproj/logIn.html", {"messg":message})
-    print(user['idToken'])
-    session_id = user['idToken']
-    request.session['uid'] = str(session_id)
-    return render(request, 'ismartproj/mycrops.html', {'e': email})
+
 
 def crops(request):
     return render(request, 'ismartproj/mycrops.html')
+
 
 def home(request):
     return render(request, 'ismartproj/home.html')

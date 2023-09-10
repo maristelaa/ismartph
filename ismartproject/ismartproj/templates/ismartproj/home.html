@@ -19,6 +19,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;800&family=Fredoka&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@800&family=Fredoka&family=Poppins:wght@600&display=swap" rel="stylesheet">
 
 </head>
@@ -50,41 +54,63 @@
     <div class="container mt-5">
         <div class="head-title">
             <h1>Dashboard</h1>
-            <h3>Hi ,</h3>
+            <h3 id="greeting"></h3>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+            // Get the current time
+            var now = new Date();
+            var hours = now.getHours();
+
+            // Define the greeting messages
+            var greeting;
+
+            if (hours >= 5 && hours < 12) {
+                greeting = "Good morning";
+            } else if (hours >= 12 && hours < 17) {
+                greeting = "Good afternoon";
+            } else {
+                greeting = "Good evening";
+            }
+
+            // Update the greeting message on the page
+            $("#greeting").text("Hi {{fName}}, " + greeting+"!");
+        }
+    );
+    </script>
 
      <!-- Move the container below the header -->
-     <div class="container mt-5">
+     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <!-- First container content -->
-                    <h1>Welcome to iSMARTPH!</h1>
-                    <p>Experience the most convenient way to manage your small farm with the help of iSMARTPH</p>
+                    <h1>Welcome to iSMARTPH!
+                    <p>Experience the most convenient way to manage your small farm with the help of iSMARTPH</p></h1>
             </div>
         </div>
         
-    <br><br><br>
-    <div class="row mt-5">
-            <div class="head-title">
-                <h3>Explore iSMARTPH Features</h3>
-            </div>
+    <div class="row mt-4">
+        <h3>Explore iSMARTPH Features</h3>
     </div>
 
-    <div class="row mt-5">
 
-        <div class="card col-md-4">
+    <div class="row mt-4">
+
+        <div class="card col-md-4 mb-4">
             <h1>My Crops</h1>
-            <p>This is the first container.</p>
+            <p>Explore how you can digitally manage your small farm using iSMARTPH</p>
         </div>
         
-        <div class="card col-md-4">
+        <div class="card col-md-4 mb-4">
             <h1>Growth Rate</h1>
             <p>This is the first container.</p>
         </div>
         
-        <div class="card col-md-4">
-            <h1>Water Temperature System</h1>
+        <div class="card col-md-4 mb-4">
+            <h1>Water Temperature</h1>
             <p>This is the first container.</p>
         </div>
     </div>
