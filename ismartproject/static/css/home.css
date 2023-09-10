@@ -16,7 +16,6 @@ body{
     min-height: 100vh;
     background-color: var(--bg-color);
     color: var(--text-color);
-    overflow-y: scroll;
 }
 
 .head-title {
@@ -29,6 +28,8 @@ body{
     font-family: 'Fredoka', sans-serif;
     font-weight: 700;
 }
+
+
 .head-title h3{
     font-size: 1.5rem;
     color: #000;
@@ -148,6 +149,7 @@ header{
 .main{
     display: flex;
     align-items: center;
+    overflow-y: scroll;
 }
 .main a{
     margin-right: 25px;
@@ -158,15 +160,15 @@ header{
     transition: all .50 ease;
 }
 
-.row{
-    padding: 0px 50px 0px 30px;
+.container{
+    position: relative;
 }
 
 /* CSS for the container */
 .col-md-12 {
     width: 100%; /* Adjust the width as needed */
     max-width: 348px; /* Maximum width if required */
-    height: 180px; /* Adjust the height as needed */
+    height: fit-content; /* Adjust the height as needed */
     border-radius: 10px;
     border: 0px solid #43D071;
     background: linear-gradient(180deg, #43D071 0%, rgba(67, 208, 113, 0.00) 100%);
@@ -181,31 +183,13 @@ header{
     padding: 40px;
     transition: all .50 ease;
 }
-.col-md-12 p{
-    font-size: 1.2rem;
+.col-md-12 .p{
+    font-size: 0.5rem;
     padding: 0px 0px 5px 40px;
     font-weight:100;
-    width: 55%;
     transition: all .50 ease;
 }
 
-.col-md-4{
-    width: 100%; /* Adjust the width as needed */
-    max-width: 348px; /* Maximum width if required */
-    height: 180px; /* Adjust the height as needed */
-    border-radius: 10px;
-    border: 0px solid #43D071;
-    background: linear-gradient(180deg, #43D071 0%, rgba(67, 208, 113, 0.00) 100%);
-    transition: all .50 ease;
-}
-
-.container-img{
-    position: fixed;
-}
-
-.container-img img{
-    width: 220%;
-}
 
 /* Media query for screens with a maximum width of 768px (typical for tablets) */
 @media screen and (max-width: 768px) {
