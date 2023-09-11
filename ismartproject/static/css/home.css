@@ -159,6 +159,34 @@ header{
     transition: all .50 ease;
 }
 
+.current_user {
+    font-size: 1px;
+    color: #05481B;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 100;
+    margin: 0px 0px 0px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.current_user {
+    padding: 0px 0px 0px 0px; /* Adjust as needed */
+}
+
+.current_user p{
+    font-size: 12px;
+    display: flex;
+    padding: 30px;
+    margin-top: 15px;
+}
+
+.current_user h4{
+    font-size: 12px;
+    display: flex;
+    padding: 25px;
+    margin-top: 15px;
+}
+
 .container{
     position: relative;
     justify-content: center;
@@ -229,7 +257,6 @@ header{
     font-family: 'Assistant', sans-serif;
     font-weight: 500;
 }
-
 
 
 /* Media query for screens with a maximum width of 768px (typical for tablets) */

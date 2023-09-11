@@ -29,6 +29,8 @@
 
 <body>
 
+    {% csrf_token %}
+
     <header>
         <div class="logo"><span><i class="ri-plant-line"></i>iSMARTPH</span>
         </div>
@@ -41,12 +43,27 @@
 
         <div class="main">
             <div class="current_user">
-                <div class="user_profile">
-                    <span><i class='bx bxs-user'></i></span>
-                </div>
+                <p>{{fName}} {{lName}} {{e}}</p>
             </div>
             <a href="{% url 'logout' %}" class="logout"><i class='bx bx-log-in'></i></a>
         </div>
+
+        <script>
+            window.addEventListener('load', () => {
+                 // Get the current_user container
+            const current_user = document.querySelector('.current_user');
+        
+            // Get the <p> element that contains the user's name
+            const userName = current_user.querySelector('p');
+        
+            // Calculate the width based on the text length
+            const textWidth = userName.offsetWidth;
+        
+            // Adjust the container width based on the text width
+            current_user.style.minWidth = textWidth + 'px';
+        });
+        </script>
+
     </header>
 
     <br><br><br><br>
