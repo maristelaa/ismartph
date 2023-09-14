@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iSMARTPH | My Crops</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css\crops.css' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@800&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@800&family=Fredoka&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+</head>
+
+<!-- Custom CSS for the modal -->
+<style>
+.custom-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    width: 50%;
+    height:fit-content;
+}
+
+.modal-header {
+    justify-content: center;
+    border: 0px solid #43D071;
+    background: linear-gradient(180deg, #43D071 0%, rgba(67, 208, 113, 0.00) 100%);
+    font-family: 'Assistant', sans-serif;
+    background: transparent;
+}
+
+.modal-header .close {
+    font-size: 24px;
+    cursor: pointer;
+}
+</style>
+
+
+<body>
+    {% csrf_token %}
+    <header>
+        <div class="logo"><span><i class="ri-plant-line"></i>iSMARTPH</span>
+        </div>
+
+        <ul class="navbar">
+            <li><a href="{% url 'home' %}">Dashboard</a></li>
+            <li><a href="{% url 'crops' %}" class="active">My Crops</a></li>
+        </ul>
+
+
+        <div class="main">
+            <div class="current_user">
+                <div class="user_profile">
+                    <span class=""><i class='bx bxs-user'></i></span>
+                </div>
+            </div>
+            <a href="{% url 'logout' %}" class="logout"><i class='bx bx-log-in'></i></a>
+        </div>
+    </header>
+
+    <br><br><br><br>
+
+
+    <div class="container mt-5">
+        <div class="head-title">
+            <h1>My Crops</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>You can now manage digitally your farm</h3>
+            </div>
+            <div class="col-md-6 button-container">
+                <!-- Add Crop Button -->
+                <button class="btn btn-success btn-md" id="addCropButton"><i class='bx bxs-plus-circle'></i> Add Crop</button>
+            </div>
+                <!-- Custom Modal (Hidden by default) -->
+            <div class="custom-modal" id="addCropModal">
+                <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add a Crop to iSMARTPH</h5>
+                            <button type="button" class="close" id="closeModal">&times;</button>
+                        </div>
+                        
+                        <!-- Modal Body -->
+                        <div class="modal-body">
+ 
+                            <form>
+                                <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="cropName">Crop Name</label>
+                                    <input type="text" class="form-control" id="cropName" placeholder="Enter Crop Name">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="cropName">Crop Name</label>
+                                    <input type="text" class="form-control" id="cropName" placeholder="Enter Crop Name">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="cropName">Crop Name</label>
+                                    <input type="text" class="form-control" id="cropName" placeholder="Enter Crop Name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cropName">Crop Name</label>
+                                    <input type="text" class="form-control" id="cropName" placeholder="Enter Crop Name">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                    
+                    <!-- Modal Footer -->
+                    <!-- Modal Footer --><br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="closeModalFooter">Close</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+
+                <!-- JavaScript to trigger the modal -->
+                <!-- JavaScript to trigger the custom modal -->
+                <script>
+                    document.getElementById("addCropButton").addEventListener("click", function() {
+                        document.getElementById("addCropModal").style.display = "flex";
+                    });
+                
+                    document.getElementById("closeModal").addEventListener("click", function() {
+                        document.getElementById("addCropModal").style.display = "none";
+                    });
+                
+                    // Attach event listener for the "Close" button in the modal footer
+                    document.getElementById("closeModalFooter").addEventListener("click", function() {
+                        document.getElementById("addCropModal").style.display = "none";
+                    });
+                </script>
+        </div>
+    </div>
+
+   
+
+    <footer>
+
+    </footer>
+
+    <!--js link-->
+    <script text="text/javascript" src="{% static 'js\script.js' %}"></script>
+    <!-- Bootstrap JS (optional, for certain components to work) -->
+    <script src="{% static 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!--js link-->
+    <script text="text/javascript" src="{% static 'js\script.js' %}"></script>
+    
+
+</body>
+</html>
+

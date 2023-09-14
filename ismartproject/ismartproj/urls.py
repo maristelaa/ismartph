@@ -11,4 +11,5 @@ urlpatterns = [
     path('forgot_pass/password_reset/', views.password_reset, name='password_reset'),
     path('crops',views.crops, name='crops'),
     path('home', views.home, name='home'),
+    path('mycrop', views.mycrop, name='mycrop'),
 ]

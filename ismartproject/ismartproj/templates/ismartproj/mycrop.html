@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iSMARTPH | My Crops</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css\mycrop.css' %}">      
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@800&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@800&family=Fredoka&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    {% csrf_token %}
+    <header>
+        <div class="logo"><span><i class="ri-plant-line"></i>iSMARTPH</span>
+        </div>
+
+        <ul class="navbar">
+            <li><a href="{% url 'home' %}">Dashboard</a></li>
+            <li><a href="{% url 'crops' %}" class="active">My Crops</a></li>
+        </ul>
+
+
+        <div class="main">
+            <div class="current_user">
+                <div class="user_profile">
+                    <span class=""><i class='bx bxs-user'></i></span>
+                </div>
+            </div>
+            <a href="{% url 'logout' %}" class="logout"><i class='bx bx-log-in'></i></a>
+        </div>
+    </header>
+
+    <br><br><br><br>
+
+
+    <div class="container mt-5">
+
+        <div id="content9">
+            <div class="head-title">
+                <h1>My Crop</h1>
+                <h3>Real-Time Crop Monitoring</h3>
+            </div>
+        </div>
+        <div id="content1">
+            <i class='bx bxs-leaf' ></i>
+            <div class="row m-sm-1">
+                <h3>Crop Name</h3>
+            </div>
+        </div>
+        <div id="content2">
+            <i class='bx bx-calendar-check'></i>
+            <div class="row m-sm-1">
+                <h3>Date Planted</h3>
+            </div>
+        </div>
+        <div id="content3">
+            <i class='bx bx-calendar-check'></i>
+            <div class="row m-sm-1">
+                <h3>Harvest Date</h3>
+            </div>
+        </div>
+        <div id="content4">
+            <h3>Yesterday's Rating</h3>
+        </div>
+        <div id="content5">
+            <h3>Soil Moisture Level</h3>
+        </div>
+        <div id="content6">
+            <h3>Temperature</h3>
+        </div>
+        <div id="content7">
+            <h3>Humidity</h3>
+        </div>
+        <div id="content8">
+            <div class="card-title">
+                <h1>Crop Growth Rate</h1>
+            </div>
+            <div class="card-img">
+                <img src="{% static 'images/plant.png' %}">
+            </div>
+        </div>
+        <footer><br>
+        </footer>
+
+    </div>
+
+
+    <!--js link-->
+    <script text="text/javascript" src="{% static 'js\script.js' %}"></script>
+    <!-- Bootstrap JS (optional, for certain components to work) -->
+    <script src="{% static 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!--js link-->
+    <script text="text/javascript" src="{% static 'js\script.js' %}"></script>
+    
+
+</body>
+</html>
+

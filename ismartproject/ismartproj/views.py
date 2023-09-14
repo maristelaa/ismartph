@@ -103,8 +103,6 @@ def logout_view(request):
     # Redirect to the login page or any other desired URL
     return redirect('logIn')
 
-    # Redirect to the login page or any other desired URL
-    return redirect('logIn')
 
 def registerUser(request):
     return render(request, 'ismartproj/register_user.html')
@@ -185,52 +183,13 @@ def password_reset(request):
     return render(request, 'ismartproj/password_reset.html', {'form': form})
 
 def home(request):
-    try:
-        if 'uid' in request.session:
-            uid = request.session['localId']
-            user_data = database.child("users").child(uid).child("useraccount").get().val()
-            fName = user_data.get("fName", "")
-            lName = user_data.get("lName", "")
-            return redirect('home', {'e': request.user.email, 'fName': fName, 'lName': lName})
-
-        # Neither Firebase nor Django authentication succeeded
-        message = "User not authenticated"
-        return render(request, "ismartproj/logIn.html", {"messg": message})
-    except KeyError:
-        message = "User Logged Out, Kindly Log In second"
-        return render(request, "ismartproj/logIn.html", {"messg": message})
-    except Exception as e:
-        # Handle any other exceptions that may occur
-        error_message = str(e)
-        return render(request, "ismartproj/logIn.html", {"messg": error_message})
+    return render(request, "ismartproj/home.html")
 
 
-@login_required(login_url='logIn')
 def crops(request):
-    try:
-        # Check if the user is authenticated through Firebase (using Django session)
-        if 'uid' in request.session:
-            uid = request.session['uid']  # Use 'uid' instead of 'localId'
+    return render(request, "ismartproj/crops.html")
 
-            # Implement your Firebase authentication logic here
-            # Ensure the user is authenticated using Firebase
 
-            # If authenticated, fetch user data and render the 'crops' page
-            user_data = database.child("users").child(uid).child("useraccount").get().val()
-            fName = user_data.get("fName", "")
-            lName = user_data.get("lName", "")
+def mycrop(request):
+    return render(request, "ismartproj/mycrop.html")
 
-            return render(request, 'ismartproj/crops.html', {'e': request.user.email, 'fName': fName, 'lName': lName})
-
-        # If the user is not authenticated in Firebase
-        message = "User not authenticated"
-        return render(request, "ismartproj/logIn.html", {"messg": message})
-
-    except KeyError:
-        message = "User Logged Out, Kindly Log In again"
-        return render(request, "ismartproj/logIn.html", {"messg": message})
-
-    except Exception as e:
-        # Handle any other exceptions that may occur
-        error_message = str(e)
-        return render(request, "ismartproj/logIn.html", {"messg": error_message})
