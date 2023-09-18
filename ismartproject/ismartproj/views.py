@@ -223,18 +223,27 @@ def signUp(request):
     return render(request, "ismartproj/signUp.html")
 
 
-def postsignup(request):
+def postSignup(request):
 
     name = request.POST.get('name')
     email = request.POST.get('email')
-    passw = request.POST.gett('pass')
+    passw = request.POST.get('pass')
 
-    user = authe.create_user_with_email_and_password(email,passw)
+
+    try:
+
+        user = authe.create_user_with_email_and_password(email,passw)
+    
+    except:
+
+        message = "Unable to create account, kindly try again."
+
+        return render(request, "ismartproj/signup.html", {"messages":message})
 
     uid = user['localId']
 
     data = {"name":name, "status":"1"}
 
-    database.child("users").child("uid").child("useraccount_details").set(data)
+    database.child("users").child(uid).child("useraccount_details").set(data)
 
     return render(request, "ismartproj/index.html")

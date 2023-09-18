@@ -22,4 +22,7 @@ urlpatterns = [
 
     path('signup', views.signUp, name="signup"),
 
+    path('postsignup', views.postSignup, name="postsignup"),
+    
+
 ]
