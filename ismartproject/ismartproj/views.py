@@ -11,9 +11,12 @@ from django.http import JsonResponse
 from django.contrib import messages
 from .forms import PasswordResetForm
 from .models import CustomUser
+from django.http import HttpResponse
 from django.urls import reverse
 import pyrebase
 import json
+import firebase_admin
+from firebase_admin import auth
 
 config = {
 
@@ -70,7 +73,7 @@ def login_view(request):
         # Render the login form
         return render(request, "ismartproj/logIn.html")
 
-def dashboard(request):
+#def dashboard(request):
     try:
         # Check if the user is authenticated through Firebase
         if 'uid' in request.session:
@@ -187,43 +190,85 @@ def home(request):
     return render(request, "ismartproj/home.html")
 
 
-def crops(request):
-    return render(request, "ismartproj/crops.html")
 
 
 def mycrop(request):
     return render(request, "ismartproj/mycrop.html")
 
+
+#try
+
 def signIn(request):
     return render(request, "ismartproj/index.html")
 
+
+def login_required_view(request):
+    return HttpResponse("Enter your credentials first.")
+
 def postSign(request):
-        
-    email = request.POST.get('email')
-    passw = request.POST.get('pass')
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        passw = request.POST.get('pass')
 
-    try:
-        user = authe.sign_in_with_email_and_password(email, passw)
+        try:
+            user = authe.sign_in_with_email_and_password(email, passw)
 
-    except:
-        # Both Firebase and Django authentication failed
-        message = "Invalid Email or Password"
-        return render(request, "ismartproj/index.html", {"messg": message})
-    print(user['localId'])
-    session_id = user['localId']
-    request.session['uid'] = str(session_id)
-    return render(request, "ismartproj/welcome.html", {"e": email})
+            # Get the User UID
+            user_uid = user['localId']
+
+            # Store the User UID in the session
+            request.session['uid'] = str(user_uid) 
+
+            # Print the session variable for debugging
+            print("Firebase UID stored in session:", user_uid)
+
+            # Get the previously stored 'current_path' (if it exists)
+            current_path = request.session.get('current_path')
+
+            if current_path:
+                # Redirect to the stored path
+                return redirect(current_path)
+            else:
+                # If there's no stored path, redirect to the home page
+                return render(request, "ismartproj/home.html", {"e": email})
+        except Exception as e:
+            # Print the exception for debugging
+            print("Exception in postSign:", str(e))
+            message = "Invalid Email or Password"
+            return render(request, "ismartproj/index.html", {"messg": message})
+    else:
+        # Handle GET request (render the login page)
+        return render(request, "ismartproj/index.html")
 
 
-def signOut (request): 
+
+
+def logout_required_view(request):
+    response = HttpResponse("Kindly logout your account first.")
+
+
+def signOut(request):
+    # Perform logout
     auth.logout(request)
-    return render(request, "ismartproj/index.html")
+
+    # Get the stored path from the session (if it exists)
+    stored_path = request.session.get('current_path')
+
+    if stored_path:
+        # Clear the 'current_path' from the session
+        del request.session['current_path']
+
+        # Redirect to the stored path
+        return redirect(stored_path)
+    else:
+        # Redirect to the index page if no stored path
+        return redirect('index')  # Replace 'index' with the actual URL name for your index page
 
 def signUp(request):
-    return render(request, "ismartproj/signUp.html")
+    return render(request, "ismartproj/signup.html")
 
 
-def postSignup(request):
+def postsignup(request):
 
     name = request.POST.get('name')
     email = request.POST.get('email')
@@ -247,3 +292,22 @@ def postSignup(request):
     database.child("users").child(uid).child("useraccount_details").set(data)
 
     return render(request, "ismartproj/index.html")
+
+def crops(request):
+    try:
+        # Verify the Firebase ID token
+        id_token = request.session.get('user_id')  # Use the correct session variable name
+        if id_token:
+            decoded_token = authe.verify_id_token(id_token)
+            uid = decoded_token['uid']
+
+            # If the user is authenticated, render the crops page
+            return render(request, "ismartproj/crops.html", {"uid": uid})
+
+        # If the user is not authenticated, redirect to the login page
+        return redirect('index')  # Replace 'index' with the actual URL name for your login page
+    except Exception as e:
+        # Print the exception for debugging
+        print("Exception in crops:", str(e))
+        # If authentication fails, redirect to the login page
+        return redirect('index')  # Replace 'index' with the actual URL name for your login page

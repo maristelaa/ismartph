@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+import firebase_admin
 from firebase_admin import credentials
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +44,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'ismartproj.middleware.FirebaseAuthenticationMiddleware',
+    'ismartproj.middleware.LogoutCheckMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,6 +85,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
 
 
 # Password validation
@@ -129,3 +135,6 @@ LOGIN_REDIRECT_URL = 'logIn'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Initialize Firebase Admin SDK
+cred = credentials.Certificate("C:\\Users\\angie\\OneDrive\\Desktop\\smart-6aa8f-firebase-adminsdk-xxkfg-27def7bfeb.json")
+firebase_admin.initialize_app(cred)
