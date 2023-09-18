@@ -2,7 +2,7 @@ from . import views
 from django.urls import path
 
 urlpatterns = [
-    path('', views.login_view, name='logIn'),
+    path('', views.logIn, name='logIn'),
     path('dashboard', views.dashboard, name='dashboard'),
     path('logout/', views.logout_view, name='logout'),
     path('register_user/', views.registerUser, name="register_user"),
@@ -12,4 +12,14 @@ urlpatterns = [
     path('crops',views.crops, name='crops'),
     path('home', views.home, name='home'),
     path('mycrop', views.mycrop, name='mycrop'),
+
+
+    #try lang
+    path('index', views.signIn, name='index'),
+    path('postSign', views.postSign, name='postSign'),
+
+    path('logout', views.signOut, name="signout"),
+
+    path('signup', views.signUp, name="signup"),
+
 ]

@@ -32,10 +32,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color:#DED9D9;
     z-index: 999;
     justify-content: center;
     align-items: center;
+    border-radius: 10px solid;
 }
 
 .modal-content {
@@ -58,6 +59,12 @@
 .modal-header .close {
     font-size: 24px;
     cursor: pointer;
+}
+
+#closeModal{
+    color: #43D071;
+    position: relative;
+    display: flex;
 }
 </style>
 
@@ -112,28 +119,62 @@
                         <div class="modal-body">
  
                             <form>
-                                <div class="container">
+                            <div class="container">
                             <div class="row">
+
                                 <div class="col-md-12">
-                                    <label for="cropName">Crop Name</label>
-                                    <input type="text" class="form-control" id="cropName" placeholder="Enter Crop Name">
+                                    <label for="cropName">Date Crop Registration</label>
+                                    <input type="date" class="form-control" id="dateRegistered" placeholder="" required>
                                 </div>
+
                             </div>
+
                             <div class="row">
-                                <div class="col-md-12">
-                                    <label for="cropName">Crop Name</label>
-                                    <input type="text" class="form-control" id="cropName" placeholder="Enter Crop Name">
-                                </div>
-                            </div>
-                            <div class="row">
+
                                 <div class="col-md-6">
                                     <label for="cropName">Crop Name</label>
-                                    <input type="text" class="form-control" id="cropName" placeholder="Enter Crop Name">
+                                    <select class="form-control" id="cropName" required>
+                                        <option value="" disabled selected>Select your Crop</option>
+                                        <option value="volvo">Volvo</option>
+                                        <option value="saab">Saab</option>
+                                        <option value="mercedes">Mercedes</option>
+                                        <option value="audi">Audi</option>
+                                    </select>                                
                                 </div>
+
                                 <div class="col-md-6">
-                                    <label for="cropName">Crop Name</label>
-                                    <input type="text" class="form-control" id="cropName" placeholder="Enter Crop Name">
+                                    <label for="cropName">Type of Used Soil</label>
+                                    <input type="text" class="form-control" id="type_soil" placeholder="Enter Crop Name" required>
                                 </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <label for="cropName">Crop Date Planted</label>
+                                    <input type="date" class="form-control" id="cropDatePlanted" placeholder="" required>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label for="cropName">Sensor #</label>
+                                    <select class="form-control" name="supplier" required>
+                                        <option value="" disabled selected>Select your Sensor</option>
+                                        <option value="volvo">Sensor 1</option>
+                                        <option value="saab">Sensor 2</option>
+                                        <option value="mercedes">Sensor 3</option>
+                                    </select>                                
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input type="checkbox" id="greenhouse" name="greenhouse" value="Greenhouse">
+                                    <label for="vehicle1"> Greenhouse?</label><br>
+                                </div>
+
                             </div>
                         </div>
                     </form>
@@ -142,8 +183,8 @@
                     <!-- Modal Footer -->
                     <!-- Modal Footer --><br>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="closeModalFooter">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-success" id="closeModalFooter">Close</button>
+                        <button type="button" class="btn btn-success">Add</button>
                     </div>
                 </div>
             </div>

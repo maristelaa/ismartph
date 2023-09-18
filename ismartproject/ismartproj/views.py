@@ -1,7 +1,8 @@
 from functools import wraps
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
+from django.contrib import auth 
 from django.contrib.auth.models import User
 from requests.exceptions import HTTPError
 from django.contrib.auth.decorators import login_required
@@ -193,3 +194,47 @@ def crops(request):
 def mycrop(request):
     return render(request, "ismartproj/mycrop.html")
 
+def signIn(request):
+    return render(request, "ismartproj/index.html")
+
+def postSign(request):
+        
+    email = request.POST.get('email')
+    passw = request.POST.get('pass')
+
+    try:
+        user = authe.sign_in_with_email_and_password(email, passw)
+
+    except:
+        # Both Firebase and Django authentication failed
+        message = "Invalid Email or Password"
+        return render(request, "ismartproj/index.html", {"messg": message})
+    print(user['localId'])
+    session_id = user['localId']
+    request.session['uid'] = str(session_id)
+    return render(request, "ismartproj/welcome.html", {"e": email})
+
+
+def signOut (request): 
+    auth.logout(request)
+    return render(request, "ismartproj/index.html")
+
+def signUp(request):
+    return render(request, "ismartproj/signUp.html")
+
+
+def postsignup(request):
+
+    name = request.POST.get('name')
+    email = request.POST.get('email')
+    passw = request.POST.gett('pass')
+
+    user = authe.create_user_with_email_and_password(email,passw)
+
+    uid = user['localId']
+
+    data = {"name":name, "status":"1"}
+
+    database.child("users").child("uid").child("useraccount_details").set(data)
+
+    return render(request, "ismartproj/index.html")
