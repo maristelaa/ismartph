@@ -139,7 +139,7 @@ header {
     function removeMessageAndRedirect() {
         setTimeout(function() {
             document.querySelector('.alert-danger').style.display = 'none';
-            window.location.href = '{% url "register_user" %}';
+            window.location.href = '{% url "signup" %}';
         }, 2000); // 5000 milliseconds (5 seconds)
     }
 
@@ -156,15 +156,15 @@ header {
 
 <div class="container mt-5">
 
-    <form action="register/" method="post">
+    <form action="postsignup" method="post">
         {% csrf_token %}
 
         <header>
             <img></img><span>iSMARTPH</span>
         </header>
         <br><br>
-        <div class="row">
-            <h1>Register a New Account</h1>
+
+        <h1>Register a New Account</h1>
 
             {% if messg %}
             <div class="alert alert-danger" role="alert">
@@ -172,42 +172,58 @@ header {
             </div>
             {% endif %}
             <p>Kindly fill the form with the correct information.</p>
+            
+        <div class="row">
+
             <div class="col-md-3 mb-3 required-field">
                 <label for="firstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="firstName" name="fName" placeholder="Enter your first name" required>
+                <input type="text" class="form-control" id="firstName" name="fname" placeholder="Enter your first name" required>
             </div>
+
             <div class="col-md-3 mb-3 required-field">
-                <label for="middleName" class="form-label">Middle Name</label>
-                <input type="text" class="form-control" id="middleName" name="mName" placeholder="Enter your middle name" required>
+                <label for="firstName" class="form-label">Middle Name</label>
+                <input type="text" class="form-control" id="middleName" name="mname" placeholder="Enter your middle name" required>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 mb-3 required-field">
-                <label for="lastName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="lastName" name="lName" placeholder="Enter your last name" required>
-            </div>
-            <div class="col-md-3 mb-3">
-                <label for="suffixName" class="form-label">Suffix Name</label>
-                <input type="text" class="form-control" id="suffixName" name="sName" placeholder="Enter your suffix name">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 mb-3 required-field">
-                <label for="input2" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Set a username" required>
-            </div>
-            <div class="col-md-3 mb-3 required-field">
-                <label for="email_address" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="email_address" name="email_address" placeholder="Enter a Email Address" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 mb-3 required-field">
-                <label for="input2" class="form-label">Password</label>
-                <input type="password" class="form-control" id="input_password" name="password" placeholder="Set a Password" required>
-            </div>
+        
         </div>
 
+            <div class="row">
+
+                <div class="col-md-3 mb-3 required-field">
+                    <label for="firstName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" name="lname" placeholder="Enter your last name" required>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label for="firstName" class="form-label">Suffix Name</label>
+                    <input type="text" class="form-control" id="firstName" name="sname" placeholder="Enter your Suffix Name">
+                </div>
+            
+            </div>
+
+            <div class="row">
+                
+                <div class="col-md-3 mb-3 required-field">
+                    <label for="email_address" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email_address" name="email" placeholder="Enter a Email Address" required>
+                </div>
+
+                <div class="col-md-3 mb-3 required-field">
+                    <label for="input2" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="input_password" name="pass" placeholder="Set a Password" required>
+                </div>
+
+            </div>
+
+            <div class="row">
+                
+                <div class="col-md-3 mb-3 required-field">
+                    <label for="email_address" class="form-label">IoT Code Model</label>
+                    <p>NOTE: IoT code model can be found on your Iot Packages</p>
+                    <input type="text" class="form-control" id="email_address" name="iot_code" placeholder="Enter your IoT Code Model" required>
+                </div>
+
+            </div>
 
         {% if error_message %}
         <div class="alert alert-danger mt-3">

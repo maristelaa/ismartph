@@ -28,7 +28,7 @@
 </head>
 
 <body>
-    <form action="dashboard" method="post"></form>
+    <form action="postSign" method="post"></form>
         {% csrf_token %}
     </form>
     <header>
@@ -45,7 +45,7 @@
             <div class="current_user">
                 <p>{{fName}} {{lName}} {{e}}</p>
             </div>
-            <a href="{% url 'logout' %}" class="logout"><i class='bx bx-log-in'></i></a>
+            <a href="{% url 'signout' %}" class="logout"><i class='bx bx-log-in'></i></a>
         </div>
 
         <script>

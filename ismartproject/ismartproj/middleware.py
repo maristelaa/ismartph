@@ -10,12 +10,11 @@ class FirebaseAuthenticationMiddleware:
     def __call__(self, request):
         if request.path == '/dashboard' and not request.user.is_authenticated:
             # Redirect users who are not authenticated and trying to access 'postSign' to the index page
-            return redirect('index')  # Replace 'index' with the actual URL name for your index page
+            return redirect('logIn')  # Replace 'index' with the actual URL name for your index page
 
         response = self.get_response(request)
         return response
-
-        
+    
 class LogoutCheckMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -25,8 +24,8 @@ class LogoutCheckMiddleware:
             # Store the current path in the session
             request.session['current_path'] = request.path
 
-            # Redirect to a page (e.g., index) without performing logout
-            return redirect(request, 'ismartproj/welcome.html')  # Replace 'index' with the actual URL name for your welcome page
+            # Redirect to a page (e.g., welcome) without performing logout
+            return redirect('welcome')  # Replace 'welcome' with the actual URL name for your welcome page
 
         response = self.get_response(request)
         return response
