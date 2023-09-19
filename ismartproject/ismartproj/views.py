@@ -61,6 +61,18 @@ def postSign(request):
             # Print the session variable for debugging
             print("Firebase UID stored in session:", user_uid)
 
+            # Get the user's UID
+            uid = user['localId']
+            
+            # Retrieve the user's fName from Firebase
+            user_data = database.child("users").child(uid).child("useraccount_details").get().val()
+            fname = user_data.get("fname")
+            lname = user_data.get("lname")
+
+            session_id = user['idToken']
+            request.session['uid'] = str(session_id)
+        
+
             # Get the previously stored 'current_path' (if it exists)
             current_path = request.session.get('current_path')
 
@@ -69,7 +81,7 @@ def postSign(request):
                 return redirect(current_path)
             else:
                 # If there's no stored path, redirect to the home page
-                return render(request, "ismartproj/home.html", {"e": email})
+                return render(request, 'ismartproj/home.html', {'e':email, 'fname': fname, 'lname':lname})
         except Exception as e:
             # Print the exception for debugging
             print("Exception in postSign:", str(e))
