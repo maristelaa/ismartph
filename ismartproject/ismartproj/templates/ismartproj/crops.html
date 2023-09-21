@@ -119,7 +119,7 @@
         </div>
 
         <ul class="navbar">
-            <li><a href="{% url 'home' %}">Dashboard</a></li>
+            <li><a href="{% url 'postSign' %}">Dashboard</a></li>
             <li><a href="{% url 'crops' %}" class="active">My Crops</a></li>
         </ul>
 
@@ -135,7 +135,6 @@
     </header>
 
     <br><br><br><br>
-
 
     <div class="container mt-5">
         <div class="head-title">
@@ -161,7 +160,7 @@
                         <!-- Modal Body -->
                         <div class="modal-body">
  
-                            <form>
+                            <form method="post" action="crops">
                             <div class="container">
                             <div class="row">
 
@@ -215,7 +214,7 @@
 
                                 <div class="col-md-6">
                                     
-                                    <label for="question"> Are you using Greenhouse?</label><br>
+                                    <label for="question">Are you using Greenhouse?</label><br>
                                     <div class="col-md-3">
                                         <input type="checkbox" id="ygreenhouse" name="ygreenhouse" value="Yes">
                                         <label for="yes"> Yes</label><br>
@@ -267,7 +266,7 @@
     <!--js link-->
     <script text="text/javascript" src="{% static 'js\script.js' %}"></script>
     <!-- Bootstrap JS (optional, for certain components to work) -->
-    <script src="{% static 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!--js link-->
     <script text="text/javascript" src="{% static 'js\script.js' %}"></script>
     
