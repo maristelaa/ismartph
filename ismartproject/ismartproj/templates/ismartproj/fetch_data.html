@@ -1,0 +1,10 @@
+<form method="fetch" post="action">
+
+{% csrf_token %}
+{% for i in timestamps %}
+    Timestamp: {{ i }}<br>
+    Temperature: {{ temperatures.0 }}<br>
+{% endfor %}
+
+</form>
+

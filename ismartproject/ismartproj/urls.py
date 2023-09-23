@@ -27,5 +27,7 @@ urlpatterns = [
     path('signup', views.signUp, name="signup"),
     path('postsignup', views.postsignup, name="postsignup"),
     
+    path('fetch_data', views.fetch_data, name="fetch"),
+    
 
 ]

@@ -16,7 +16,7 @@ from django.urls import reverse
 import pyrebase
 import json
 import firebase_admin
-from firebase_admin import auth
+from firebase_admin import auth, credentials, db
 
 config = {
 
@@ -68,7 +68,8 @@ def postSign(request):
             user_data = database.child("users").child(uid).child("useraccount_details").get().val()
             fname = user_data.get("fname")
             lname = user_data.get("lname")
-
+            
+            
             session_id = user['idToken']
             request.session['uid'] = str(session_id)
         
@@ -323,3 +324,21 @@ def crops(request):
         print("Exception in crops:", str(e))
         # If any other exception occurs, redirect to the login page
         return redirect('logIn')  # Replace 'index' with the actual URL name for your login page
+
+def fetch_data(request):
+    # Retrieve the temperature data from Firebase
+    temp_data = database.child("IOT").child("15004526S1").child("DATA").child("TEMP").get().val()
+
+    # Initialize variables to store timestamps and temperatures
+    timestamps = []
+    temperatures = []
+
+    if temp_data:
+        for timestamp, value in temp_data.items():
+            timestamps.append(timestamp)
+            temperatures.append(value)
+
+    return render(request, 'ismartproj/fetch_data.html', {'timestamps': timestamps, 'temperatures': temperatures})
+
+
+    
