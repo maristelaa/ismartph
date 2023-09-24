@@ -86,8 +86,8 @@ def postSign(request):
         except Exception as e:
             # Print the exception for debugging
             print("Exception in postSign:", str(e))
-            message = "Invalid Email or Password" + str(e)
-            return render(request, "ismartproj/logIn.html", {"messg": message + str(e)})
+            message = "Invalid Email or Password"
+            return render(request, "ismartproj/logIn.html", {"messg": message})
     else:
         # Handle GET request (render the login page)
         return render(request, "ismartproj/logIn.html")
@@ -325,8 +325,22 @@ def crops(request):
         # If any other exception occurs, redirect to the login page
         return redirect('logIn')  # Replace 'index' with the actual URL name for your login page
 
+
+#start of the progress of algo
 # Get today's date in the format "Sep-21-2023"
 import datetime
+import csv
+
+# Function to save data to CSV file
+def save_data_to_csv(data, filename='data.csv'):
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    data_to_write = [timestamp] + data  # Add timestamp to the data
+
+    with open(filename, mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(data_to_write)
+
+
 def fetch_data(request):
     today_date = datetime.datetime.now().strftime("%b-%d-%Y")
 
@@ -401,6 +415,14 @@ def fetch_data(request):
                 "time": most_recent_hum_time_str,
                 "humid_value": most_recent_hum
             }
+            
+    # Save the fetched data to CSV
+    if most_recent_temp_data:
+        save_data_to_csv([most_recent_temp_data["time"], most_recent_temp_data["temperature"]], 'temperature.csv')
+    if most_recent_sml_data:
+        save_data_to_csv([most_recent_sml_data["time"], most_recent_sml_data["sml_value"]], 'sml.csv')
+    if most_recent_hum_data:
+        save_data_to_csv([most_recent_hum_data["time"], most_recent_hum_data["humid_value"]], 'humidity.csv')
 
     return render(request, 'ismartproj/fetch_data.html', {
         'most_recent_temp_data': most_recent_temp_data,

@@ -99,11 +99,20 @@
 
     </div>
 
+    <script>
+        // Function to refresh the page
+        function refreshPage() {
+            location.reload();
+        }
+
+        // Set a timer to refresh the page every 3 minutes (180000 milliseconds)
+        setTimeout(refreshPage, 180000); // 3 minutes = 180000 milliseconds
+    </script>
 
     <!--js link-->
     <script text="text/javascript" src="{% static 'js\script.js' %}"></script>
     <!-- Bootstrap JS (optional, for certain components to work) -->
-    <script src="{% static 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'"></script>
     <!--js link-->
     <script text="text/javascript" src="{% static 'js\script.js' %}"></script>
     

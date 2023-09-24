@@ -130,7 +130,6 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-
 LOGIN_REDIRECT_URL = 'logIn'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -138,3 +137,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Initialize Firebase Admin SDK
 cred = credentials.Certificate("C:\\Users\\angie\\OneDrive\\Desktop\\smart-6aa8f-firebase-adminsdk-xxkfg-27def7bfeb.json")
 firebase_admin.initialize_app(cred)
+
+
+# settings.py
+
+# Celery configuration
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Use your message broker's URL
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Use your message broker's URL
+
+# Additional Celery settings
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'

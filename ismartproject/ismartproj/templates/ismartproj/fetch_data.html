@@ -25,10 +25,12 @@
      <h1>Most Recent Humidity Data for Today:</h1>
      {% if most_recent_hum_data %}
          <p>Time: {{ most_recent_hum_data.time }}</p>
-         <p>SML Value: {{ most_recent_hum_data.humid_value }}</p>
+         <p>Humidity Value: {{ most_recent_hum_data.humid_value }}</p>
      {% else %}
-         <p>No SML data available for today.</p>
+         <p>No Humidity data available for today.</p>
      {% endif %}
+
+     
 
 </body>
 </html>
