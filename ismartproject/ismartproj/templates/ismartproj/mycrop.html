@@ -79,12 +79,27 @@
         </div>
         <div id="content5">
             <h3>Soil Moisture Level</h3>
+            {% if most_recent_sml_data %}
+                <p> {{ most_recent_sml_data.sml_value }}%</p>
+            {% else %}
+                <p>No SML data available for today.</p>
+            {% endif %}
         </div>
         <div id="content6">
             <h3>Temperature</h3>
+            {% if most_recent_temp_data %}
+                <p> {{ most_recent_temp_data.temperature }}°C</p>
+            {% else %}
+                <p>No temperature data available for today.</p>
+            {% endif %}
         </div>
         <div id="content7">
             <h3>Humidity</h3>
+            {% if most_recent_hum_data %}
+                <p> {{ most_recent_hum_data.humid_value }}</p>
+            {% else %}
+                <p>No Humidity data available for today.</p>
+            {% endif %}
         </div>
         <div id="content8">
             <div class="card-title">

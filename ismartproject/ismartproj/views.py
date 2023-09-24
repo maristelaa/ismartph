@@ -284,6 +284,96 @@ def home(request):
 
 
 def mycrop(request):
+    
+    today_date = datetime.datetime.now().strftime("%b-%d-%Y")
+
+    # Fetch the temperature data for today
+    temp_data = database.child("IOT").child("15004526").child("S1").child("DATA").child("TEMP").child(today_date).get().val()
+    sml_data = database.child("IOT").child("15004526").child("S1").child("DATA").child("SML").child(today_date).get().val()
+    humid_data = database.child("IOT").child("15004526").child("S1").child("DATA").child("HUMIDITY").child(today_date).get().val()
+
+
+    most_recent_temp_data = None
+    most_recent_sml_data = None
+    most_recent_hum_data = None
+
+
+    # Process temperature data
+    if temp_data:
+        most_recent_temp_time = None
+        most_recent_temp = None
+
+        for time, temp in temp_data.items():
+            if isinstance(temp, (int, float)) and isinstance(time, str) and ':' in time:
+                time_obj = datetime.datetime.strptime(time, "%H:%M")
+
+                if most_recent_temp_time is None or time_obj > most_recent_temp_time:
+                    most_recent_temp_time = time_obj
+                    most_recent_temp = temp
+
+        if most_recent_temp_time is not None:
+            most_recent_temp_time_str = most_recent_temp_time.strftime("%H:%M")
+            most_recent_temp_data = {
+                "time": most_recent_temp_time_str,
+                "temperature": most_recent_temp
+            }
+
+    # Process SML data
+    if sml_data:
+        most_recent_sml_time = None
+        most_recent_sml = None
+
+        for time, sml in sml_data.items():
+            if isinstance(sml, (int, float)) and isinstance(time, str) and ':' in time:
+                time_obj = datetime.datetime.strptime(time, "%H:%M")
+
+                if most_recent_sml_time is None or time_obj > most_recent_sml_time:
+                    most_recent_sml_time = time_obj
+                    most_recent_sml = sml
+
+        if most_recent_sml_time is not None:
+            most_recent_sml_time_str = most_recent_sml_time.strftime("%H:%M")
+            most_recent_sml_data = {
+                "time": most_recent_sml_time_str,
+                "sml_value": most_recent_sml
+            }
+            
+            
+    # Process SML data
+    if humid_data:
+        most_recent_hum_time = None
+        most_recent_hum = None
+
+        for time, hum in humid_data.items():
+            if isinstance(sml, (int, float)) and isinstance(time, str) and ':' in time:
+                time_obj = datetime.datetime.strptime(time, "%H:%M")
+
+                if most_recent_hum_time is None or time_obj > most_recent_hum_time:
+                    most_recent_hum_time = time_obj
+                    most_recent_hum = hum
+
+        if most_recent_hum_time is not None:
+            most_recent_hum_time_str = most_recent_hum_time.strftime("%H:%M")
+            most_recent_hum_data = {
+                "time": most_recent_hum_time_str,
+                "humid_value": most_recent_hum
+            }
+            
+    # Save the fetched data to CSV
+    if most_recent_temp_data:
+        save_data_to_csv([most_recent_temp_data["time"], most_recent_temp_data["temperature"]], 'temperature.csv')
+    if most_recent_sml_data:
+        save_data_to_csv([most_recent_sml_data["time"], most_recent_sml_data["sml_value"]], 'sml.csv')
+    if most_recent_hum_data:
+        save_data_to_csv([most_recent_hum_data["time"], most_recent_hum_data["humid_value"]], 'humidity.csv')
+
+    return render(request, 'ismartproj/mycrop.html', {
+        'most_recent_temp_data': most_recent_temp_data,
+        'most_recent_sml_data': most_recent_sml_data,
+        'most_recent_hum_data': most_recent_hum_data,
+    }
+)
+
     return render(request, "ismartproj/mycrop.html")
 
 def crops(request):
