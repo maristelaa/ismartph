@@ -1,10 +1,34 @@
-<form method="fetch" post="action">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Most Recent Data</title>
+</head>
+<body>
+    <h1>Most Recent Temperature Data for Today:</h1>
+    {% if most_recent_temp_data %}
+        <p>Time: {{ most_recent_temp_data.time }}</p>
+        <p>Temperature: {{ most_recent_temp_data.temperature }}</p>
+    {% else %}
+        <p>No temperature data available for today.</p>
+    {% endif %}
 
-{% csrf_token %}
-{% for i in timestamps %}
-    Timestamp: {{ i }}<br>
-    Temperature: {{ temperatures.0 }}<br>
-{% endfor %}
+    <!-- Add a section for SML data -->
+    <h1>Most Recent SML Data for Today:</h1>
+    {% if most_recent_sml_data %}
+        <p>Time: {{ most_recent_sml_data.time }}</p>
+        <p>SML Value: {{ most_recent_sml_data.sml_value }}</p>
+    {% else %}
+        <p>No SML data available for today.</p>
+    {% endif %}
 
-</form>
+     <!-- Add a section for SML data -->
+     <h1>Most Recent Humidity Data for Today:</h1>
+     {% if most_recent_hum_data %}
+         <p>Time: {{ most_recent_hum_data.time }}</p>
+         <p>SML Value: {{ most_recent_hum_data.humid_value }}</p>
+     {% else %}
+         <p>No SML data available for today.</p>
+     {% endif %}
 
+</body>
+</html>
